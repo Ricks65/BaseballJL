@@ -1,0 +1,37 @@
+{% extends 'league/base.html' %}
+{% block content %}
+  <section class="container">
+    <div class="page-header">
+      <h1>Registered Players</h1>
+      <a href="{% url 'player_create' %}" class="btn-add">+ Add New Player</a>
+    </div>
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>#</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.number }}</td>
+                <td>{{ player.position }}</td>
+                <td>{{ player.team.name }}</td>
+                <td>
+                    <a href="#" class="btn btn-secondary">Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No players registered.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </section>
+{% endblock %}

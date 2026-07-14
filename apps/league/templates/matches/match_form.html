@@ -1,0 +1,81 @@
+{% extends 'league/base.html' %}
+{% block content %}
+
+    <style>
+        /* Terminal de Sintonización de Encuentros de la Familia */
+        .match-form-wrapper p {
+            margin-bottom: 1.25rem;
+        }
+        .match-form-wrapper label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: rgba(251, 191, 36, 0.8); /* Oro */
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.1em;
+        }
+        .match-form-wrapper input[type="text"],
+        .match-form-wrapper input[type="number"],
+        .match-form-wrapper input,
+        .match-form-wrapper select {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            outline: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            color: #e7e5e4; /* stone-200 */
+            background-color: #09090b; /* zinc-950 */
+        }
+        .match-form-wrapper input:focus,
+        .match-form-wrapper select:focus {
+            border-color: #f59e0b; /* Dorado foco */
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+        }
+        .match-form-wrapper select option {
+            background-color: #18181b;
+            color: #e7e5e4;
+        }
+    </style>
+
+<section class="max-w-2xl mx-auto py-10 px-4 animate-fade-in">
+    <div class="bg-gradient-to-b from-zinc-900 to-black rounded-2xl shadow-[0_0_40px_rgba(168,85,247,0.15)] border-2 border-amber-400/30 overflow-hidden">
+        
+        <div class="bg-gradient-to-r from-purple-950/60 via-zinc-900 to-black p-6 border-b-2 border-amber-400/30 text-center relative">
+            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-tr from-amber-500 to-amber-600 text-zinc-950 w-10 h-10 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(251,191,36,0.4)] font-bold text-lg border border-amber-300">
+                📅
+            </div>
+            <h2 class="font-baseball text-xl text-stone-100 tracking-widest uppercase font-black">Abrir Frecuencia de Juego</h2>
+            <p class="text-xs text-purple-400 uppercase tracking-widest mt-1 font-mono font-bold">Rol de Encuentros | Consciencia</p>
+        </div>
+        
+        <div class="p-8">
+            <form method="post" class="match-form-wrapper">
+                {% csrf_token %}
+                
+                <div class="bg-purple-950/10 p-5 rounded-xl border border-purple-900/30 mb-6 backdrop-blur-sm">
+                    {{ form.as_p }}
+                </div>
+                
+                {% if form.errors %}
+                <div class="bg-rose-950/40 border-l-4 border-rose-500 text-rose-400 p-4 rounded-r-lg mb-6 text-xs font-mono">
+                    <p class="font-bold uppercase tracking-wide mb-1 text-rose-300">⚠️ Anomalías detectadas en los parámetros:</p>
+                    {{ form.errors }}
+                </div>
+                {% endif %}
+        
+                <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                    <button type="submit" class="w-full sm:flex-grow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 px-6 py-3 rounded-lg font-mono font-black uppercase tracking-widest text-xs shadow-md transition-all transform hover:-translate-y-0.5">
+                        Establecer Sintonía ⚾
+                    </button>
+                    <a href="{% url 'match_list' %}" class="w-full sm:w-auto text-center border border-purple-900/60 bg-zinc-950 hover:bg-purple-950/20 text-stone-400 hover:text-stone-200 px-6 py-3 rounded-lg font-mono font-bold uppercase tracking-widest text-xs transition-all">
+                        Descartar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

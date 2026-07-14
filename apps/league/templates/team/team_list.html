@@ -1,0 +1,99 @@
+{% extends 'league/base.html' %}
+{% block content %}
+
+<section class="w-full my-6 max-w-5xl mx-auto animate-fade-in px-4">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 bg-gradient-to-r from-purple-950 via-zinc-900 to-indigo-950 p-6 rounded-xl border-2 border-amber-400/40 shadow-[0_4px_30px_rgba(251,191,36,0.15)] relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-70"></div>
+
+            <h2 class="font-baseball text-lg md:text-xl text-stone-100 tracking-widest uppercase font-black">
+                🍸 Facciones & Equipos
+            </h2>
+            {% if user.is_staff %}
+                <a href="{% url 'team_create' %}"
+                   class="inline-flex items-center gap-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 font-black px-4 py-2 rounded-lg text-xs uppercase tracking-widest border border-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all transform hover:-translate-y-0.5">
+                    + Nueva Facción
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+
+                <thead>
+                    <tr class="bg-black/40 border-b border-purple-950/40 text-amber-400 text-xs font-mono font-bold uppercase tracking-[0.15em]">
+                        <th class="py-4 px-6">Nombre de la Facción</th>
+                        <th class="py-4 px-6">Ciudad de Origen</th>
+                        <th class="py-4 px-6">Categoría de Sueño</th>
+                        <th class="py-4 px-6">Líder / Patrocinador</th>
+                        {% if user.is_staff %}
+                            <th class="py-4 px-6 text-center w-48">Gestión</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-purple-950/20 text-sm text-stone-300">
+
+                    {% for team in teams %}
+                    <tr class="hover:bg-purple-900/5 transition-colors group">
+
+                        <td class="py-4 px-6 font-bold text-stone-200 tracking-wide group-hover:text-amber-300 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="text-amber-400/80">⚜️</span>
+                                {{ team.name }}
+                            </div>
+                        </td>
+
+                        <td class="py-4 px-6 font-mono text-stone-400 text-xs tracking-wider">
+                            📍 {{ team.City }}
+                        </td>
+
+                        <td class="py-4 px-6">
+                            <span class="bg-purple-950/60 text-purple-300 text-xs px-2.5 py-1 rounded border border-purple-500/30 font-mono font-bold uppercase tracking-wider">
+                                {{ team.get_category_display }}
+                            </span>
+                        </td>
+
+                        <td class="py-4 px-6 text-stone-400 font-medium">
+                            👑 <span class="text-stone-300 font-semibold">{{ team.owner }}</span>
+                        </td>
+
+                        {% if user.is_staff %}
+                            <td class="py-4 px-6 text-center">
+                                <div class="flex items-center justify-center gap-3 text-xs uppercase tracking-wider font-bold font-mono">
+
+                                    <a href="{% url 'team_update' team.pk %}"
+                                       class="bg-zinc-900 hover:bg-purple-950 text-amber-400 hover:text-amber-300 px-3 py-1.5 rounded border border-purple-900/40 hover:border-amber-500/40 transition-all shadow-sm">
+                                        🛎️ Modificar
+                                    </a>
+
+                                    <a href="{% url 'team_delete' team.pk %}"
+                                       class="bg-zinc-900 hover:bg-rose-950/40 text-rose-400 hover:text-rose-300 px-3 py-1.5 rounded border border-rose-950 hover:border-rose-500/40 transition-all shadow-sm">
+                                        ❌ Clausurar
+                                    </a>
+
+                                </div>
+                            </td>
+                        {% endif %}
+                    </tr>
+
+                    {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_staff %}5{% else %}4{% endif %}" class="py-16 px-6 text-center text-stone-500">
+                            <div class="text-4xl mb-3 opacity-60">🃏</div>
+                            <p class="font-mono font-bold text-base text-amber-500/70 uppercase tracking-widest">Sin Organizaciones Activas</p>
+                            <p class="text-xs text-purple-400/60 mt-1 max-w-md mx-auto font-mono">El paisaje onírico está libre de influencias. ¡Crea una nueva facción para comenzar el juego de la Armonía!</p>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

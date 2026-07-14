@@ -1,0 +1,60 @@
+{% extends 'league/base.html' %}
+{% block content %}
+<section class="max-w-xl mx-auto py-12 px-4 animate-fade-in">
+    <div class="bg-gradient-to-b from-zinc-900 to-black rounded-2xl shadow-[0_0_50px_rgba(244,63,94,0.15)] border-2 border-rose-500/30 overflow-hidden">
+        
+        <div class="bg-gradient-to-r from-rose-950/40 via-zinc-900 to-black px-6 py-6 border-b-2 border-rose-500/30 text-center">
+            <h2 class="font-baseball text-xl text-stone-100 tracking-widest uppercase font-black">
+                Colapsar Encuentro
+            </h2>
+            <p class="text-rose-400 font-mono text-xs uppercase tracking-[0.2em] mt-1 font-bold">
+                Cisura en el Historial del Sueño
+            </p>
+        </div>
+
+        <div class="p-8 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-rose-950/40 border border-rose-500/30 flex items-center justify-center text-3xl shadow-[inner_0_0_15px_rgba(244,63,94,0.3)] animate-pulse">
+                ⏳
+            </div>
+            
+            <p class="text-stone-300 mb-5 font-medium text-sm">
+                ¿Está seguro de que desea borrar y desvanecer este encuentro del tejido de la realidad?
+            </p>
+            
+            <div class="bg-gradient-to-r from-rose-950/20 via-purple-950/10 to-rose-950/20 border border-rose-500/20 rounded-xl p-5 mb-8 backdrop-blur-sm shadow-inner text-center">
+                
+                <h3 class="font-mono font-black text-base tracking-wide text-stone-200 mb-3">
+                    <span class="text-stone-100">🔱 {{ object.home_team }}</span> 
+                    <span class="text-xs bg-gradient-to-r from-rose-500 to-rose-600 px-2 py-0.5 rounded font-serif italic text-zinc-950 font-black mx-2 shadow-[0_0_10px_rgba(244,63,94,0.4)]">VS</span> 
+                    <span class="text-stone-100">🔮 {{ object.away_team }}</span>
+                </h3>
+                
+                <div class="space-y-1 text-xs font-mono text-stone-400 border-t border-purple-950/40 pt-3 mt-2">
+                    <p>📅 Frecuencia: <span class="text-stone-300 font-bold">{{ object.match_date }}</span></p>
+                    <p>🌌 Escenario: <span class="text-purple-400">{{ object.location }}</span></p>
+                </div>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="flex flex-col sm:flex-row justify-center gap-3 font-mono text-xs font-bold uppercase tracking-widest">
+                    
+                    <button type="submit"
+                            class="bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-stone-100 font-black px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all transform hover:-translate-y-0.5">
+                        Confirmar Colapso
+                    </button>
+                    
+                    <a href="{% url 'match_list' %}"
+                       class="border border-purple-900/60 hover:border-purple-500 bg-zinc-950 hover:bg-purple-950/20 text-stone-400 hover:text-stone-200 px-6 py-3 rounded-lg transition-all flex items-center justify-center">
+                        Preservar Sintonía
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="bg-black/40 py-2.5 px-6 border-t border-zinc-900/60 text-center">
+            <span class="text-[9px] font-mono tracking-[0.25em] uppercase text-stone-600">Protocolo de Purga Automática del Relojero</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

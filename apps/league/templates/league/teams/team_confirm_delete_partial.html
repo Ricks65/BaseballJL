@@ -1,0 +1,26 @@
+<div class="text-center space-y-4">
+    <h2 class="font-baseball text-2xl text-rose-500 tracking-wider uppercase font-black drop-shadow-[0_0_10px_rgba(244,63,94,0.2)]">
+        Delete Team
+    </h2>
+    
+    <p class="confirm-text text-xs text-stone-300 font-mono leading-relaxed bg-rose-950/20 border border-rose-500/20 p-5 rounded-xl text-left">
+        Are you sure you want to delete <strong class="text-stone-100 font-sans text-sm block my-1 text-center bg-black/40 py-1 rounded border border-zinc-800">🔱 {{ team.name }} ({{ team.get_category_display }})</strong>
+        <span class="text-rose-400 font-bold uppercase tracking-wider block mt-3 text-center text-[11px]">
+            🚨 Warning: This will also delete all players assigned to this team. This action cannot be undone.
+        </span>
+    </p>
+
+    <form method="post" class="form-actions flex justify-center gap-3 font-mono text-xs font-bold uppercase tracking-widest pt-2" 
+          id="teamDeleteForm" data-url="{% url 'team_delete' team.pk %}">
+        {% csrf_token %}
+        
+        <button type="submit" class="btn-delete bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-stone-100 px-6 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5">
+            Delete Team
+        </button>
+        
+        <button type="button" class="btn-outline-dark border border-zinc-700 bg-zinc-950 text-stone-400 hover:text-stone-200 px-6 py-2.5 rounded-lg transition-all" 
+                onclick="closeTeamModal()">
+            Cancel
+        </button>
+    </form>
+</div>

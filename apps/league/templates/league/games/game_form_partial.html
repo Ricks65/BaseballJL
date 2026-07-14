@@ -1,0 +1,57 @@
+<style>
+    .styled-form input, .styled-form select, .styled-form textarea {
+        width: 100%;
+        padding: 0.65rem 1rem;
+        border-radius: 0.375rem;
+        border: 1px solid rgba(147, 51, 234, 0.3);
+        outline: none;
+        transition: all 0.2s;
+        font-size: 0.85rem;
+        color: #e7e5e4; /* stone-200 */
+        background-color: #09090b; /* zinc-950 */
+    }
+    .styled-form input:focus, .styled-form select:focus, .styled-form textarea:focus {
+        border-color: #f59e0b; /* Dorado en foco */
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+    }
+</style>
+
+<h2 class="font-baseball text-lg text-stone-100 tracking-widest uppercase font-black text-center mb-4 border-b border-zinc-800 pb-2">
+    {{ title }}
+</h2>
+
+<form method="post" class="styled-form space-y-4 text-left" id="gameForm" data-url="{{ request.path }}">
+    {% csrf_token %}
+    
+    {% for field in form %}
+        {% if field.name != 'home_score' and field.name != 'away_score' %}
+        <div class="form-group flex flex-col">
+            <label for="{{ field.id_for_label }}" class="block text-[10px] font-mono font-bold uppercase tracking-widest text-purple-400 mb-1">
+                {{ field.label }}
+            </label>
+            
+            <div class="relative">
+                {{ field }}
+            </div>
+            
+            {% if field.errors %}
+                <p class="field-error text-rose-400 font-mono text-[10px] mt-1 bg-rose-950/20 border-l-2 border-rose-500 px-2 py-0.5 rounded-r">
+                    ⚠️ {{ field.errors|striptags }}
+                </p>
+            {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if form.non_field_errors %}
+        <p class="field-error text-rose-400 font-mono text-xs text-center p-3 bg-rose-950/40 border border-rose-500/30 rounded-lg">
+            🚫 {{ form.non_field_errors|striptags }}
+        </p>
+    {% endif %}
+
+    <div class="form-actions flex justify-end gap-3 font-mono text-xs font-bold uppercase tracking-widest pt-2">
+        <button type="submit" class="btn-add bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 px-5 py-2.5 rounded-lg border border-amber-300 shadow-[0_0_12px_rgba(251,191,36,0.15)] transition-all transform hover:-translate-y-0.5">
+            Save
+        </button>
+    </div>
+</form>

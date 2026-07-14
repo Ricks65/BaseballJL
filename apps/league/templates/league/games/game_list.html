@@ -1,0 +1,72 @@
+{% extends 'league/base.html' %}
+{% block title %}JBL | Partidos{% endblock %}
+
+{% block content %}
+<div class="jbl-page-header">
+    <h1 class="jbl-font h3 text-warning text-uppercase mb-1">Partidos y resultados</h1>
+    <p class="text-muted small mb-0">
+        Calendario de la liga (solo lectura, para todos los usuarios)
+    </p>
+</div>
+
+<div class="jbl-table-wrap">
+    <div class="table-responsive">
+        <table class="table table-jbl mb-0">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th>Sede</th>
+                    <th class="text-center">Marcador</th>
+                    {% if user.is_authenticated and user.is_superuser %}
+                        <th class="text-center">Acciones</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            {% if user.is_authenticated and user.is_superuser %}
+                <div class="mb-3">
+                    <a href="{% url 'game_create' %}" class="btn btn-warning">
+                        <i class="bi bi-plus-circle"></i>
+                        Agregar Partido
+                    </a>
+                </div>
+            {% endif %}
+
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td><i class="bi bi-calendar-event"></i> {{ game.date|date:"Y-m-d" }}</td>
+                    <td class="fw-semibold"><i class="bi bi-house-fill text-warning me-1"></i>{{ game.home_team.name }}</td>
+                    <td class="fw-semibold"><i class="bi bi-airplane-fill text-info me-1"></i>{{ game.away_team.name }}</td>
+                    <td>{{ game.location }}</td>
+                    <td class="text-center">
+                        {% if game.home_score is not None and game.away_score is not None %}
+                            <span class="badge badge-jbl">{{ game.home_score }} - {{ game.away_score }}</span>
+                        {% else %}
+                            <span class="text-muted">Pendiente</span>
+                        {% endif %}
+                    </td>
+                    {% if user.is_authenticated and user.is_superuser %}
+                        <td class="text-center">
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'game_score' game.pk %}" class="btn btn-jbl-outline btn-sm">
+                                <i class="bi bi-pencil-fill"></i> Editar Marcador
+                            </a>
+                        
+                            <a href="{% url 'game_delete' game.pk %}" class="btn btn-jbl-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </a>
+                        {% endif %}
+                        </td>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="jbl-empty-row">Aún no hay partidos programados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

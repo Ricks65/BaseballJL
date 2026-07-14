@@ -1,0 +1,18 @@
+{% extends "league/base.html" %}
+
+{% block content %}
+  <section class="container forms-section">
+    
+      <h1>Register New Player</h1>
+      <div class="form-card">
+        <form method="post" class="main-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Player</button>
+            <a href="{% url 'player_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+    </section>
+{% endblock %}

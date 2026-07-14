@@ -1,0 +1,307 @@
+/* =============================================================================
+   Junior Baseball League - Hoja de estilos personalizada
+   Complementa Bootstrap 5 (no lo reemplaza). Tema oscuro ámbar/púrpura.
+   ============================================================================= */
+
+:root {
+    --jbl-bg: #0b0b10;
+    --jbl-bg-soft: #16161d;
+    --jbl-surface: #1c1c26;
+    --jbl-border: #2c2c3a;
+    --jbl-amber: #f59e0b;
+    --jbl-amber-soft: #fbbf24;
+    --jbl-purple: #a855f7;
+    --jbl-text: #e7e5e4;
+    --jbl-text-muted: #9ca3af;
+    --jbl-danger: #f43f5e;
+    --jbl-radius: 14px;
+    --jbl-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+body {
+    background-color: var(--jbl-bg);
+    background-image: radial-gradient(ellipse at top, rgba(168, 85, 247, 0.08), transparent 60%);
+    color: var(--jbl-text);
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+a {
+    color: var(--jbl-amber-soft);
+}
+a:hover {
+    color: var(--jbl-amber);
+}
+
+.jbl-font {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 0.06em;
+}
+
+/* ==========================================================================
+   HEADER / NAVBAR
+   ========================================================================== */
+.jbl-navbar {
+    background-color: rgba(11, 11, 16, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--jbl-border);
+}
+
+.jbl-navbar .navbar-brand {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    letter-spacing: 0.12em;
+    color: var(--jbl-amber-soft) !important;
+    font-size: 1.4rem;
+}
+
+.jbl-navbar .nav-link {
+    color: var(--jbl-text-muted) !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+.jbl-navbar .nav-link:hover,
+.jbl-navbar .nav-link.active {
+    color: var(--jbl-amber-soft) !important;
+}
+
+.jbl-user-pill {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: var(--jbl-purple);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   BOTONES PERSONALIZADOS
+   ========================================================================== */
+.btn-jbl-primary {
+    background: linear-gradient(135deg, var(--jbl-amber), #d97706);
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    color: #0b0b10;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-jbl-primary:hover {
+    color: #0b0b10;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.3);
+}
+
+.btn-jbl-outline {
+    border: 1px solid var(--jbl-border);
+    color: var(--jbl-text-muted);
+    background: transparent;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.btn-jbl-outline:hover {
+    color: var(--jbl-text);
+    border-color: var(--jbl-purple);
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.btn-jbl-danger {
+    background: linear-gradient(135deg, #f43f5e, #be123c);
+    border: 1px solid rgba(244, 63, 94, 0.5);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    border-radius: 10px;
+}
+.btn-jbl-danger:hover {
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.3);
+}
+
+/* ==========================================================================
+   TARJETAS
+   ========================================================================== */
+.jbl-card {
+    background: var(--jbl-surface);
+    border: 1px solid var(--jbl-border);
+    border-radius: var(--jbl-radius);
+    box-shadow: var(--jbl-shadow);
+}
+
+.jbl-card-hero {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(11, 11, 16, 0.9));
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.jbl-stat-card {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--jbl-border);
+    border-radius: var(--jbl-radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.15s ease;
+}
+.jbl-stat-card:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+}
+.jbl-stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--jbl-amber-soft);
+    display: block;
+}
+.jbl-stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--jbl-text-muted);
+}
+
+.jbl-info-card {
+    background: var(--jbl-bg-soft);
+    border: 1px solid var(--jbl-border);
+    border-radius: var(--jbl-radius);
+    padding: 1.4rem;
+    height: 100%;
+}
+.jbl-info-card h3 {
+    color: var(--jbl-amber-soft);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.jbl-info-card p {
+    color: var(--jbl-text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   TABLAS MEJORADAS
+   ========================================================================== */
+.jbl-table-wrap {
+    background: var(--jbl-surface);
+    border: 1px solid var(--jbl-border);
+    border-radius: var(--jbl-radius);
+    overflow: hidden;
+}
+
+.table-jbl {
+    margin-bottom: 0;
+    color: var(--jbl-text);
+}
+.table-jbl thead {
+    background: rgba(168, 85, 247, 0.12);
+}
+.table-jbl thead th {
+    color: var(--jbl-amber-soft);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--jbl-border);
+    white-space: nowrap;
+}
+.table-jbl tbody tr {
+    border-color: var(--jbl-border);
+}
+.table-jbl tbody tr:hover {
+    background-color: rgba(168, 85, 247, 0.06);
+}
+.table-jbl td, .table-jbl th {
+    vertical-align: middle;
+    border-color: var(--jbl-border) !important;
+    color: var(--jbl-text);
+    background-color: transparent;
+}
+
+.badge-jbl {
+    background: rgba(168, 85, 247, 0.18);
+    color: var(--jbl-purple);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   FORMULARIOS
+   ========================================================================== */
+.jbl-form-card {
+    background: var(--jbl-surface);
+    border: 1px solid var(--jbl-border);
+    border-radius: var(--jbl-radius);
+    box-shadow: var(--jbl-shadow);
+}
+
+.form-control, .form-select {
+    background-color: #0b0b10;
+    border: 1px solid var(--jbl-border);
+    color: var(--jbl-text);
+}
+.form-control:focus, .form-select:focus {
+    background-color: #0b0b10;
+    color: var(--jbl-text);
+    border-color: var(--jbl-amber);
+    box-shadow: 0 0 0 0.2rem rgba(245, 158, 11, 0.2);
+}
+.form-control::placeholder {
+    color: #6b7280;
+}
+.form-label {
+    color: var(--jbl-text-muted);
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+.invalid-feedback {
+    display: block;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.jbl-footer {
+    background: rgba(0, 0, 0, 0.55);
+    border-top: 1px solid var(--jbl-border);
+    color: var(--jbl-text-muted);
+    font-size: 0.78rem;
+}
+.jbl-footer a {
+    color: var(--jbl-text-muted);
+}
+
+/* ==========================================================================
+   UTILIDADES
+   ========================================================================== */
+.jbl-empty-row {
+    text-align: center;
+    color: var(--jbl-text-muted);
+    padding: 2.5rem 1rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+.jbl-page-header {
+    border-bottom: 1px solid var(--jbl-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}

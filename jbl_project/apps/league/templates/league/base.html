@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBL | Junior Baseball League</title>
+    <link rel="stylesheet" href="{% static 'league/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <h1 style="margin: 0;">JBL</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Teams</a></li>
+                <li><a href="{% url 'home' %}">Players</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" onclick="openLogin(); return false;">Login</a></li>            </ul>
+        </nav>
+    </header>
+
+    <main style="min-height: 65vh;">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="{% static 'league/images/logo-footer.png' %}" alt="Footer Logo" style="width: 120px;">
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2026 Junior Baseball League. All rights reserved.</p>
+                <p>Status: <span class="status-online">System Online</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal()">&times;</span>
+            
+            <h2 style="color: #0b3c5d; margin-bottom: 5px;">Login</h2>
+            <h3 style="color: #666; font-weight: normal; margin-bottom: 25px; font-size: 16px;">Staff Access</h3>
+            
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" required class="modal-input">
+                <input type="password" name="password" placeholder="Password" required class="modal-input">
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; font-size: 16px;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Muestra la ventana flotante
+        function abrirModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        // Oculta la ventana flotante
+        function cerrarModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        // Cierra la ventana si el usuario hace clic afuera del recuadro blanco
+        window.onclick = function(event) {
+            var modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBL | Junior Baseball League</title>
+    <link rel="stylesheet" href="{% static 'league/css/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <h1>Junior Baseball League</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="http://127.0.0.1:8000/league/">Home</a></li>
+                <li><a href="#">Teams</a></li>
+                <li><a href="http://127.0.0.1:8000/league/players/">Players</a></li>
+                <li><a href="#">Schedule</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to the Official Management System</h2>
+                <p>Manage teams, register players, assign categories, and track game statistics all in one centralized platform.</p>
+                <a href="#" class="btn-primary">Get Started</a>
+            </div>
+            <div class="hero-image">
+                <img src="{% static 'league/images/2.jpg' %}" alt="Baseball players on the field">
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>🏆 Teams Management</h3>
+                <p>View complete team rosters, current standings, and coach contact information.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚾ Players & Roster</h3>
+                <p>Manage individual player profiles, performance stats, and age category assignments.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📅 Game Schedule</h3>
+                <p>Check upcoming games, field assignments, umpire schedules, and final match results.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="{% static 'league/images/1.jpg' %}" alt="JBL Footer Logo">
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2026 Junior Baseball League. All rights reserved.</p>
+                <p>Status: <span class="status-online">System Online</span></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

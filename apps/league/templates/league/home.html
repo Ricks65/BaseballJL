@@ -1,0 +1,121 @@
+{% extends 'league/base.html' %}
+{% load static %}
+
+{% block title %}JBL | Inicio{% endblock %}
+
+{% block content %}
+<section class="jbl-card-hero mb-5" style="background-image: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(11,11,16,0.92)), url('{% static 'league/images/imagen1.jpg' %}'); background-size: cover; background-position: center;">
+    <h1 class="jbl-font display-4 text-warning text-uppercase">{{ league_name }}</h1>
+    <p class="text-white-50 mt-3 mb-4 col-lg-8 mx-auto">
+        {{ league_description }}
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="{% url 'player_list' %}" class="btn btn-jbl-primary px-4 py-2">
+            <i class="bi bi-people-fill"></i> Ver jugadores
+        </a>
+        <a href="{% url 'team_list' %}" class="btn btn-jbl-outline px-4 py-2">
+            <i class="bi bi-shield-fill"></i> Ver equipos
+        </a>
+        <a href="{% url 'game_list' %}" class="btn btn-jbl-outline px-4 py-2">
+            <i class="bi bi-calendar-event-fill"></i> Ver partidos
+        </a>
+    </div>
+</section>
+
+<!-- Dashboard con estadísticas generales -->
+<section class="row g-3 mb-5">
+    <div class="col-6 col-md-3">
+        <div class="jbl-stat-card">
+            <span class="jbl-stat-number">{{ team_count }}</span>
+            <span class="jbl-stat-label">Equipos</span>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="jbl-stat-card">
+            <span class="jbl-stat-number">{{ player_count }}</span>
+            <span class="jbl-stat-label">Jugadores</span>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="jbl-stat-card">
+            <span class="jbl-stat-number">{{ game_count }}</span>
+            <span class="jbl-stat-label">Partidos programados</span>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="jbl-stat-card">
+            <span class="jbl-stat-number">{{ games_played }}</span>
+            <span class="jbl-stat-label">Partidos jugados</span>
+        </div>
+    </div>
+</section>
+
+<!-- Información de la liga y del deporte -->
+<section class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="jbl-info-card">
+            <h3><i class="bi bi-trophy-fill"></i> La Liga</h3>
+            <p>
+                {{ league_name }} organiza torneos de {{ league_sport }} desde {{ league_founded_year }},
+                agrupando equipos en categorías Starter (6-9), Junior (10-13) y Upper (14-17).
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="jbl-info-card">
+            <h3><i class="bi bi-baseball"></i> El Deporte</h3>
+            <p>
+                Se juega {{ league_sport }}: cada equipo compite en partidos de 6 a 9 entradas
+                según la categoría, promoviendo la disciplina, el trabajo en equipo y el respeto.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="jbl-info-card">
+            <h3><i class="bi bi-person-badge-fill"></i> Staff</h3>
+            <p>
+                Los Coaches gestionan a su equipo y jugadores, mientras que el Admin
+                supervisa toda la liga. El acceso al panel de gestión requiere inicio de sesión.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Próximos / últimos partidos -->
+<section>
+    <div class="jbl-page-header d-flex justify-content-between align-items-center">
+        <h2 class="jbl-font h4 text-warning text-uppercase mb-0">Últimos partidos</h2>
+        <a href="{% url 'game_list' %}" class="btn btn-jbl-outline btn-sm">Ver todos</a>
+    </div>
+    <div class="jbl-table-wrap">
+        <table class="table table-jbl mb-0">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th class="text-center">Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in recent_games %}
+                <tr>
+                    <td>{{ game.date }}</td>
+                    <td>{{ game.home_team.name }}</td>
+                    <td>{{ game.away_team.name }}</td>
+                    <td class="text-center">
+                        {% if game.home_score is not None and game.away_score is not None %}
+                            <span class="badge badge-jbl">{{ game.home_score }} - {{ game.away_score }}</span>
+                        {% else %}
+                            <span class="text-muted">Pendiente</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4" class="jbl-empty-row">Aún no hay partidos registrados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

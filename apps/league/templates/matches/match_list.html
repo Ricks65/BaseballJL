@@ -1,0 +1,122 @@
+{% extends 'league/base.html' %}
+{% block content %}
+<section class="max-w-7xl mx-auto py-8 px-4 animate-fade-in">
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 bg-gradient-to-r from-purple-950 via-zinc-900 to-indigo-950 p-6 rounded-xl border-2 border-amber-400/40 shadow-[0_4px_30px_rgba(251,191,36,0.15)] relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-70"></div>
+        
+            <div class="flex items-center gap-3">
+                <span class="text-2xl drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">🏟️</span>
+                <div>
+                    <h2 class="font-baseball text-xl tracking-widest text-stone-100 uppercase font-black">Bitácora de Encuentros Oníricos</h2>
+                    <p class="text-xs text-purple-400 font-mono font-bold uppercase tracking-wider mt-0.5">Sintonización de la Jornada</p>
+                </div>
+            </div>
+            
+            {% if user.is_staff %}
+                <a href="{% url 'match_create' %}"
+                   class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-zinc-950 px-5 py-2.5 rounded-lg text-xs font-mono font-black uppercase tracking-widest border border-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all transform hover:-translate-y-0.5">
+                    <span class="text-base font-normal">+</span> Programar Encuentro
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-black/50 border-b border-purple-950/40 text-amber-400 text-xs font-mono font-bold uppercase tracking-[0.15em]">
+                        <th class="py-4 px-6">📅 Sintonía Cronológica</th>
+                        <th class="py-4 px-6">🛎️ Facción Local</th>
+                        <th class="py-4 px-2 text-center text-purple-400/50">VS</th>
+                        <th class="py-4 px-6">✈️ Facción Visitante</th>
+                        <th class="py-4 px-6">📍 Escenario</th>
+                        <th class="py-4 px-6 text-center">Estado del Sueño</th>
+                        {% if not user.is_staff %}
+                            <th class="py-4 px-6 text-center">Marcador Holográfico</th>
+                        {% endif %}
+                        {% if user.is_staff %}
+                            <th class="py-4 px-6 text-center">Mesa de Control</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-purple-950/20 text-sm font-medium text-stone-300">
+                {% for match in matches %}
+                    <tr class="hover:bg-purple-900/5 transition-colors group">
+                        
+                        <td class="py-4 px-6 font-mono text-xs tracking-wider text-stone-400">
+                            {{ match.match_date }}
+                        </td>
+                        
+                        <td class="py-4 px-6 font-bold text-stone-200 group-hover:text-amber-300 transition-colors">
+                            <span class="inline-block mr-1.5 opacity-80">🔱</span> {{ match.home_team }}
+                        </td>
+                        
+                        <td class="py-4 px-2 text-center font-serif italic text-xs font-black text-amber-400/40 bg-purple-950/10">
+                            VS
+                        </td>
+                        
+                        <td class="py-4 px-6 font-bold text-stone-200 group-hover:text-amber-300 transition-colors">
+                            <span class="inline-block mr-1.5 opacity-80">🔮</span> {{ match.away_team }}
+                        </td>
+                        
+                        <td class="py-4 px-6 text-stone-400 font-normal font-mono text-xs">
+                            🌌 {{ match.location }}
+                        </td>
+                        
+                        <td class="py-4 px-6 text-center">
+                            {% if match.status == "SCHEDULED" %}
+                                <span class="inline-flex items-center gap-1 bg-amber-950/40 text-amber-400 border border-amber-500/30 text-[10px] px-2.5 py-1 rounded font-mono font-bold uppercase tracking-wider shadow-sm backdrop-blur-sm">
+                                    ⏳ En Espera
+                                </span>
+                            {% elif match.status == "PLAYED" %}
+                                <span class="inline-flex items-center gap-1 bg-emerald-950/40 text-emerald-400 border border-emerald-500/30 text-[10px] px-2.5 py-1 rounded font-mono font-bold uppercase tracking-wider shadow-sm backdrop-blur-sm">
+                                    ✅ Jugando
+                                </span>
+                            {% else %}
+                                <span class="inline-flex items-center gap-1 bg-rose-950/40 text-rose-400 border border-rose-500/30 text-[10px] px-2.5 py-1 rounded font-mono font-bold uppercase tracking-wider shadow-sm backdrop-blur-sm">
+                                    ❌ Desincronizado
+                                </span>
+                            {% endif %}
+                        </td>
+                        
+                        {% if not user.is_staff %}
+                            <td class="py-4 px-6 text-center font-mono font-bold text-amber-400 text-base tracking-widest bg-black/20">
+                                {{ match.home_score }} <span class="text-stone-600 font-normal">:</span> {{ match.away_score }}
+                            </td>
+                        {% endif %}
+
+                        {% if user.is_staff %}
+                            <td class="py-4 px-6 text-center">
+                                <div class="flex items-center justify-center gap-2 font-mono text-xs uppercase tracking-wider font-bold">
+                                    
+                                    <a href="{% url 'match_update' match.pk %}" 
+                                       class="inline-flex items-center bg-zinc-900 border border-emerald-900 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/30 px-3 py-1.5 rounded transition-all shadow-sm">
+                                        📊 Dictaminar
+                                    </a>
+                                    
+                                    <a href="{% url 'match_delete' match.pk %}" 
+                                       class="inline-flex items-center bg-zinc-900 border border-rose-950 text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 px-3 py-1.5 rounded transition-all shadow-sm">
+                                        Remover
+                                    </a>
+                                    
+                                </div>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="{% if user.is_staff %}7{% else %}6{% endif %}" class="text-center py-20 px-6 text-stone-500">
+                            <div class="text-4xl mb-3 opacity-50">🎫</div>
+                            <p class="font-mono font-bold text-base text-amber-500/70 uppercase tracking-widest">Cielos Despejados en el Sueño</p>
+                            <p class="text-xs text-purple-400/60 mt-1.5 max-w-sm mx-auto font-mono leading-relaxed">
+                                No hay frecuencias de juego activas en este instante. Solicita al personal del hotel abrir una nueva jornada.
+                            </p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

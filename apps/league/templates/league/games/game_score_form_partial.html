@@ -1,0 +1,42 @@
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <h4 class="text-center">
+            {{ game.home_team.name }}
+            <span class="mx-3 text-warning">VS</span>
+            {{ game.away_team.name }}
+        </h4>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <label class="form-label fw-bold">
+                Marcador de {{ game.home_team.name }}
+            </label>
+            {{ form.home_score }}
+            {{ form.home_score.errors }}
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label fw-bold">
+                Marcador de {{ game.away_team.name }}
+            </label>
+            {{ form.away_score }}
+            {{ form.away_score.errors }}
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-warning">
+            Guardar marcador
+        </button>
+
+        <a href="{% url 'game_list' %}" class="btn btn-secondary">
+            Cancelar
+        </a>
+    </div>
+
+</form>

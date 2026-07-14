@@ -1,0 +1,645 @@
+/* ==========================================================================
+   1. VARIABLES Y RESET
+   ========================================================================== */
+:root {
+    --primary-color: #2d3748;         /* gris azulado oscuro */
+    --secondary-color: #4a5568;       /* gris medio */
+    --accent-color: #63b3ed;          /* azul claro brillante */
+    --accent-color-hover: #4299e1;    /* azul más intenso */
+    --danger-color: #fc8181;          /* rojo suave */
+    --bg-color: #1a202c;              /* fondo oscuro */
+    --text-color: #e2e8f0;            /* texto claro */
+    --table-hover: #2d3748;           /* hover de tabla */
+    --border-color: #4a5568;          /* bordes grises */
+    --border-radius: 12px;            /* esquinas redondeadas */
+    --shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. HEADER / NAVBAR
+   ========================================================================== */
+header {
+    background-color: var(--primary-color);
+    color: #f7fafc;
+    border-bottom: 2px solid var(--accent-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-color), #9f7aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.15s ease;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   3. MAIN / CONTENEDOR
+   ========================================================================== */
+main {
+    flex: 1;
+    padding: 3rem 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 28px 32px;
+    background-color: #2d3748;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* ==========================================================================
+   4. BOTONES Y COMPONENTES
+   ========================================================================== */
+.btn-add {
+    background-color: var(--accent-color);
+    color: #1a202c;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(99, 179, 237, 0.25);
+}
+
+.btn-add:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(99, 179, 237, 0.35);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+.edit {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted transparent;
+    transition: border-color 0.2s;
+}
+
+.edit:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    color: #f7fafc;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+    background-color: #5a6a7e;
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+   5. TABLA ESTILIZADA
+   ========================================================================== */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 400px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: var(--primary-color);
+    color: #f7fafc;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.styled-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #374151;
+}
+
+.styled-table tbody tr:hover {
+    background-color: var(--table-hover);
+}
+
+.styled-table td[colspan="5"] {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* ==========================================================================
+   6. MODAL DE LOGIN
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #2d3748;
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.modal-content h2 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 1rem;
+    background-color: #1a202c;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #e2e8f0;
+    transition: border-color 0.2s;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #a0aec0;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: var(--danger-color);
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--primary-color);
+    color: #cbd5e0;
+    text-align: center;
+    padding: 1.2rem;
+    border-top: 2px solid var(--accent-color);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-login {
+    max-width: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.2s;
+}
+
+.footer-login:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   8. HOME / HERO
+   ========================================================================== */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(145deg, var(--primary-color), #1e2a3a);
+    color: #f7fafc;
+    border-radius: var(--border-radius);
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent-color), #9f7aea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 550px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-outline {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 10px 26px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-color);
+    color: #1a202c;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   9. STATS SECTION
+   ========================================================================== */
+.stats-section {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background-color: #2d3748;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    min-width: 150px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    display: block;
+    margin-top: 0.5rem;
+    color: #a0aec0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   10. INFO SECTION
+   ========================================================================== */
+.info-section {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    flex: 1;
+    min-width: 220px;
+    background-color: #2d3748;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+}
+
+.info-card h2 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: #cbd5e0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   11. ACTIONS COLUMN
+   ========================================================================== */
+.actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.delete {
+    color: var(--danger-color);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted transparent;
+    transition: border-color 0.2s;
+}
+
+.delete:hover {
+    border-bottom-color: var(--danger-color);
+}
+
+/* ==========================================================================
+   12. FORMULARIOS
+   ========================================================================== */
+.styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    max-width: 500px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    background-color: #1a202c;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #e2e8f0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
+}
+
+.field-error {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-outline-dark {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.25s, color 0.25s, transform 0.15s;
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--accent-color);
+    color: #1a202c;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: var(--danger-color);
+    color: #1a202c;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-delete:hover {
+    background-color: #feb2b2;
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+   13. CONFIRM DELETE
+   ========================================================================== */
+.confirm-text {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #cbd5e0;
+}
+
+/* ==========================================================================
+   14. SCORE FORM
+   ========================================================================== */
+.score-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.score-row .form-group {
+    flex: 1;
+}
+
+/* ==========================================================================
+   16. LOGIN PAGE
+   ========================================================================== */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+
+.login-card {
+    background-color: #2d3748;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2.8rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow);
+}
+
+.login-card h2 {
+    color: var(--accent-color);
+    font-size: 1.6rem;
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.login-card .form-group input {
+    border-radius: 50px;
+    padding: 14px 20px;
+}
+
+.login-card .btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    background-color: var(--accent-color);
+    color: #1a202c;
+    font-weight: 700;
+}
+
+.login-card .btn:hover {
+    background-color: var(--accent-color-hover);
+}

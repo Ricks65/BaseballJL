@@ -1,0 +1,342 @@
+/* Reset básico para que se vea igual en todos los navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Barra de Navegación --- */
+header {
+    background-color: #0b3c5d; /* Azul béisbol */
+    color: white;
+    padding: 1.5rem 5%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d2282e; /* Rojo béisbol */
+}
+
+/* --- Sección Principal (Hero) --- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 5%;
+    background-color: #ffffff;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 3rem;
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    color: #0b3c5d;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #d2282e; /* Rojo béisbol */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #a01d22;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: right;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* --- Tarjetas de Funcionalidades --- */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 5%;
+    gap: 30px;
+    background-color: #f4f7f6;
+}
+
+.feature-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: #0b3c5d;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.feature-card p {
+    color: #555;
+}
+
+/* --- Pie de Página (Footer) --- */
+footer {
+    background-color: #1d2731;
+    color: white;
+    padding: 2rem 5%;
+    margin-top: auto; /* Empuja el footer siempre al fondo */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    max-width: 120px;
+    height: auto;
+}
+
+.footer-info {
+    text-align: right;
+}
+
+.status-online {
+    color: #4CAF50; /* Verde brillante para status */
+    font-weight: bold;
+}
+
+/* --- Contenedor Principal de la Lista --- */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* --- Encabezado de la Página --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #fbc02d; /* Acento amarillo/dorado */
+}
+
+.page-header h1 {
+    color: #0b3c5d; /* Azul institucional */
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* --- Botones --- */
+.btn {
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Botón "Add New Player" (Rojo con textura metálica) */
+.btn-primary {
+    background: linear-gradient(145deg, #d2282e, #a01d22);
+    color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
+    background: linear-gradient(145deg, #a01d22, #7a1519);
+}
+
+/* Botón "Edit" (Amarillo/Dorado con textura) */
+.btn-secondary {
+    background: linear-gradient(145deg, #fbc02d, #f9a825);
+    color: #1d2731;
+    padding: 6px 14px;
+    font-size: 14px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(145deg, #f9a825, #f57f17);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* --- Tabla Institucional --- */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: left;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden; /* Mantiene los bordes redondeados limpios */
+}
+
+/* Encabezado de la tabla (Azul profundo) */
+.styled-table thead tr {
+    background: linear-gradient(to bottom, #104f7a, #0b3c5d);
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 15px 20px;
+}
+
+/* Filas del cuerpo */
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.2s ease;
+}
+
+/* Efecto cebra para facilitar la lectura */
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+/* Efecto al pasar el cursor */
+.styled-table tbody tr:hover {
+    background-color: #e2e8f0;
+}
+
+/* Estilo para el estado vacío (No players registered) */
+.styled-table td[colspan="5"] {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px;
+}
+
+/* ========================================= */
+/* ESTILOS DEL MODAL FLOTANTE (LOGIN)        */
+/* ========================================= */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; 
+    z-index: 1000; /* Asegura que esté por encima de la tabla y el header */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 60, 93, 0.85); /* Fondo azul oscuro transparente */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    text-align: center;
+    animation: fadeIn 0.3s ease-out; /* Pequeña animación al abrir */
+}
+
+/* Animación para que aparezca suavemente */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #d2282e;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 14px 15px;
+    margin: 10px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-input:focus {
+    border-color: #0b3c5d;
+    box-shadow: 0 0 0 3px rgba(11, 60, 93, 0.1);
+    outline: none;
+}

@@ -1,0 +1,23 @@
+<div class="text-center space-y-4">
+    <h2 class="font-baseball text-xl text-rose-400 tracking-wider uppercase font-black">
+        Delete Player
+    </h2>
+    
+    <p class="confirm-text text-xs text-stone-300 font-mono leading-relaxed bg-rose-950/20 border border-rose-500/20 p-4 rounded-xl">
+        Are you sure you want to delete <strong class="text-stone-100 font-sans text-sm block my-1">🔱 {{ player.name }}</strong> 
+        (#{{ player.number }}, {{ player.team.name }})?<br>
+        <span class="text-rose-400 text-[10px] font-bold uppercase tracking-wider block mt-2">🚨 This action cannot be undone.</span>
+    </p>
+
+    <form method="post" class="form-actions flex justify-center gap-3 font-mono text-xs font-bold uppercase tracking-widest pt-2" 
+          id="playerDeleteForm" data-url="{% url 'player_delete' player.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-delete bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-stone-100 px-5 py-2.5 rounded-lg shadow-md transition-all">
+            Delete
+        </button>
+        <button type="button" class="btn-outline-dark border border-zinc-700 bg-zinc-950 hover:bg-zinc-900 text-stone-400 hover:text-stone-200 px-5 py-2.5 rounded-lg transition-all" 
+                onclick="closePlayerModal()">
+            Cancel
+        </button>
+    </form>
+</div>

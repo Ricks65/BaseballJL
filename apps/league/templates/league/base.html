@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}JBL | Junior Baseball League{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'league/images/logo_ft.jpg' %}">
+</head>
+<body>
+
+    <header class="jbl-navbar sticky-top">
+        <nav class="navbar navbar-expand-lg py-3">
+            <div class="container">
+                <a class="navbar-brand jbl-font" href="{% url 'home' %}">
+                    <img src="{% static 'league/images/logo_ft.jpg' %}" alt="Logo JBL" width="32" height="32" class="rounded-circle me-2 border border-warning">
+                    JBL
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#jblNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="jblNav">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'team_list' %}">Equipos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'player_list' %}">Jugadores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'game_list' %}">Partidos</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <span class="jbl-user-pill">
+                                    <i class="bi bi-person-fill"></i>
+                                    {{ request.user.first_name|default:request.user.username }}
+                                    {% if request.user.is_superuser %}(Admin){% elif request.user.is_staff %}(Coach){% endif %}
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" class="d-inline m-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-jbl-outline btn-sm ms-lg-2">
+                                        <i class="bi bi-box-arrow-right"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-jbl-primary btn-sm" href="{% url 'login' %}">
+                                    <i class="bi bi-box-arrow-in-right"></i> Login
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert" data-auto-dismiss>
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="jbl-footer py-4 mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+            <div>
+                <i class="bi bi-code-slash"></i>
+                Desarrollado por:
+                {% for dev in site_developers %}{{ dev }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            </div>
+            <div>{{ site_course_name }}</div>
+            <div>&copy; {{ site_year }} {{ league_name }}</div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'league/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
