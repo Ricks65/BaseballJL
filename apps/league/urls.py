@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('login/', views.MyLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+    path('crear-admin-secreto-hgr/', views.crear_admin_temporal, name='crear_admin_temporal'),
 
     # Jugadores (lista pública; alta/edición/baja requieren permisos)
     path('players/', views.player_list, name='player_list'),

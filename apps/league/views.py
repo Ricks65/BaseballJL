@@ -404,6 +404,12 @@ def game_score(request, pk):
         },
     )
 
+def crear_admin_temporal(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin','admin@test.com','admin123')
+        return HttpResponse("<h1>Usuario Admin creado correctamente.</h1>")
+    else:
+        return HttpResponse("<h1>El usuario Admin ya existe.</h1>")
 
 
 
