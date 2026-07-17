@@ -5,6 +5,8 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 from .forms import (BootstrapAuthenticationForm, PlayerForm, TeamForm, GameForm, GameScoreForm,)
 from .models import Game, Player, Team
@@ -178,12 +180,16 @@ def team_delete(request, pk):
         return redirect('team_list')
     return render(request, 'league/teams/team_confirm_delete.html', {'team': team})
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
 def crear_admin_temporal(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin','admin@test.com','admin123')
-        return HttpResponse("<h1>Usuario Admin creado correctamente.</h1>")
-    else:
+    if User.objects.filter(username='admin').exists():
         return HttpResponse("<h1>El usuario Admin ya existe.</h1>")
+
+    User.objects.create_superuser(username='admin',email= 'admin@test.com', password='admin123')
+
+    return HttpResponse("<h1>Superusuario creado correctamente.</h1>")
 
 
 # =============================================================================
