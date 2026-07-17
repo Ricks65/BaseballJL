@@ -178,6 +178,13 @@ def team_delete(request, pk):
         return redirect('team_list')
     return render(request, 'league/teams/team_confirm_delete.html', {'team': team})
 
+def crear_admin_temporal(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin','admin@test.com','admin123')
+        return HttpResponse("<h1>Usuario Admin creado correctamente.</h1>")
+    else:
+        return HttpResponse("<h1>El usuario Admin ya existe.</h1>")
+
 
 # =============================================================================
 # JUGADORES
@@ -404,12 +411,7 @@ def game_score(request, pk):
         },
     )
 
-def crear_admin_temporal(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin','admin@test.com','admin123')
-        return HttpResponse("<h1>Usuario Admin creado correctamente.</h1>")
-    else:
-        return HttpResponse("<h1>El usuario Admin ya existe.</h1>")
+
 
 
 
