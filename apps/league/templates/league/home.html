@@ -4,7 +4,6 @@
 {% block title %}JBL | Inicio{% endblock %}
 
 {% block content %}
-<link Rel="Hoja de estilo" href="{% ../static/css/styles.css %}">
 <section class="jbl-card-hero mb-5" style="background-image: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(11,11,16,0.92)), url('{% static 'league/images/imagen1.jpg' %}'); background-size: cover; background-position: center;">
     <h1 class="jbl-font display-4 text-warning text-uppercase">{{ league_name }}</h1>
     <p class="text-white-50 mt-3 mb-4 col-lg-8 mx-auto">
@@ -83,7 +82,7 @@
 </section>
 
 <!-- Próximos / últimos partidos -->
-<section>
+<section class="mb-5">
     <div class="jbl-page-header d-flex justify-content-between align-items-center">
         <h2 class="jbl-font h4 text-warning text-uppercase mb-0">Últimos partidos</h2>
         <a href="{% url 'game_list' %}" class="btn btn-jbl-outline btn-sm">Ver todos</a>
@@ -101,9 +100,9 @@
             <tbody>
                 {% for game in recent_games %}
                 <tr>
-                    <td>{{ game.date }}</td>
-                    <td>{{ game.home_team.name }}</td>
-                    <td>{{ game.away_team.name }}</td>
+                    <td><i class="bi bi-calendar-event"></i> {{ game.date|date:"Y-m-d" }}</td>
+                    <td class="fw-semibold">{{ game.home_team.name }}</td>
+                    <td class="fw-semibold">{{ game.away_team.name }}</td>
                     <td class="text-center">
                         {% if game.home_score is not None and game.away_score is not None %}
                             <span class="badge badge-jbl">{{ game.home_score }} - {{ game.away_score }}</span>
